@@ -8,7 +8,7 @@ class PTOMS:
     def __init__(self, company: str, department: str):
         self.company = company
         self.department = department
-        self.ptoRecords = [] # list[PtoRecord]
+        self.records = [] # list[PtoRecord]
         self.calendar = Calendar()
         self.ptoRule = PtoRule()
         self.sessions = [] # list[UserAuthenitcationSessions]
@@ -17,7 +17,7 @@ class PTOMS:
         # To Do return a pto record from a given ID
         pass
 
-        for ptorecord in self.ptoRecords:
+        for ptorecord in self.records:
             if ptorecord.getId() == id:
                 return ptorecord
             
@@ -26,8 +26,8 @@ class PTOMS:
             ptoDaysPermitted: int,
             sickDaysPermitted: int,
             employee: Employee) -> None:
-        # Creates a new PtoRecord class and adds it to self.ptoRecords
-        self.ptoRecords.append(
+        # Creates a new PtoRecord class and adds it to self.records
+        self.records.append(
             PtoRecord(id, ptoDaysPermitted, sickDaysPermitted, employee)
         )
 
@@ -38,11 +38,11 @@ class PTOMS:
         # When after iterating through both the id list and record list
         # If the record id matches the target, the corresponding record
         # is removed from the pto list. 
-        id_list = [x.getId() for x in self.ptoRecords]
+        id_list = [x.getId() for x in self.records]
 
-        for record_ids, record in zip(id_list, self.ptoRecords):
+        for record_ids, record in zip(id_list, self.records):
             if id == record_ids:
-                self.ptoRecords.remove(record)
+                self.records.remove(record)
 
     def newPtoRule(self, minDaysAway: int)-> None:
         self.ptoRule.setMinDatesAway(minDaysAway)
