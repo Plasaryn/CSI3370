@@ -22,3 +22,12 @@ class PtoRecord:
 
     def getId(self) -> int:
         return self.id
+    
+    def getSickDaysRemaining(self) -> int:
+        return self.sickDaysRemaining
+    
+    def getPtoDaysRemaining(self) -> int:
+        return self.ptoDaysRemaining
+    
+    def getEmployeeName(self) -> str:
+        return self.employee.getName()
