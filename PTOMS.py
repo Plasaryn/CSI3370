@@ -1,15 +1,15 @@
 from Employee import Employee
 from PtoRecord import PtoRecord
-from Calendar import Calendar
+from PtoCalendar import PtoCalendar
 from PtoRule import PtoRule
-from UserAuthenticationSession import UserAuthenticaitonSession
+from UserAuthenticationSession import UserAuthenticationSession
 
 class PTOMS:
     def __init__(self, company: str, department: str):
         self.company = company
         self.department = department
         self.records = [] # list[PtoRecord]
-        self.calendar = Calendar()
+        self.calendar = PtoCalendar()
         self.ptoRule = PtoRule()
         self.sessions = [] # list[UserAuthenitcationSessions]
 
@@ -50,7 +50,7 @@ class PTOMS:
     def getPtoRule(self) -> PtoRule:
         return self.ptoRule
     
-    def getCalendar(self) -> Calendar:
+    def getCalendar(self) -> PtoCalendar:
         return self.calendar
     
     def addSession(self, session: UserAuthenticationSession) -> None:
