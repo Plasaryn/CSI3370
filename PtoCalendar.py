@@ -2,7 +2,7 @@ from CalendarEvent import CalendarEvent
 
 class PtoCalendar:
   def __init__(self) -> None:
-    self.events = [] #list[CalendarEvent]
+    self.events: list[CalendarEvent] = []
 
   def getCalendarEvents(self) -> list[CalendarEvent]:
     return self.events
