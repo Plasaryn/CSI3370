@@ -2,15 +2,15 @@ from PTOMS import PTOMS
 
 class PtoRule:
 
-    def __init__(self, minDaysAway: int, ptoRule):
+    def __init__(self, minDaysAway: int):
         self.minDaysAway = minDaysAway
     
-    def getMinDatesAway(self) -> PTOMS:
+    def getMinDaysAway(self) -> int:
         return self.minDaysAway
     
-    def setMinDatesAway(self, minDatesAway):
+    def setMinDaysAway(self, minDaysAway):
         # Textual for now; Can implement into GUI, input
         # minDates
-        minDatesAway = input()
+        minDaysAway = input()
         
-        self._minDatesAway = minDatesAway
+        self.minDaysAway = minDaysAway

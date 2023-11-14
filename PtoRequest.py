@@ -4,7 +4,6 @@ from PtoRecord import PtoRecord
 from PtoStatus import PtoStatus
 from PtoType import PtoType
 from CalendarEvent import CalendarEvent
-import datetime, timedelta
 class PtoRequest:
 
     def __init__(self, eventStart: date, eventEnd: date, message: str):
@@ -45,7 +44,7 @@ class PtoRequest:
     
     def setStatus(self, appStatus):
 
-        self._status = appStatus
+        self.status = appStatus
     def getType(self) -> PtoType:
         return self.PtoType
     
@@ -59,7 +58,7 @@ class PtoRequest:
         return self.message
     
     def setMessage(self, message):
-        self._message = message
+        self.message = message
     
     def checkPtoRule(self, ptoms: PTOMS) -> None:
         # Convert the PTORule to check how many days
@@ -67,13 +66,14 @@ class PtoRequest:
         # time off
         time_rule = ptoms.getPtoRule
         day_convert = -time_rule
-        current_day = datetime.datetime.today()
-        next_day = datetime.timedelta(days = day_convert)
+        current_day = date.today()
+        next_day = timedelta(days = day_convert)
 
         total_time = current_day - next_day
         day_format = total_time.strftime("%d")
         #display the current pto rule, textual for now
-        print("Cannot take time off within " + day_format)
+        print("Cannot take time off until the " + day_format)
+        
 
 
         

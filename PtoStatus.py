@@ -1,4 +1,3 @@
-from PtoRequest import PtoRequest
 from enum import Enum
 class PtoStatus(Enum):
     Approved = 1

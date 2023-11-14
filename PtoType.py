@@ -1,4 +1,3 @@
-from PtoRequest import PtoRequest
 from enum import Enum
 class PtoType(Enum):
     PTO = 1

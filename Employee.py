@@ -7,13 +7,14 @@ class Employee:
     self.startDate = startDate
 
   def getID(self, id: int):
+    
     return self.id
   
   def setID(self, id):
-    self.__id = id
+    self.id = id
 
   def getName(self, name: str):
     return self.name
   
   def setName(self, name):
-    self.__name = name
+    self.name = name
