@@ -10,7 +10,7 @@ class PTOMS:
         self.department = department
         self.records: list[PtoRecord] = []
         self.calendar = PtoCalendar()
-        self.ptoRule = PtoRule()
+        self.ptoRule = PtoRule(0)
         self.sessions: list(UserAuthenticationSession) = []
 
     def getPtoRecord(self, id: int) -> PtoRecord:
@@ -45,7 +45,7 @@ class PTOMS:
                 self.records.remove(record)
 
     def newPtoRule(self, minDaysAway: int)-> None:
-        self.ptoRule.setMinDatesAway(minDaysAway)
+        self.ptoRule.setMinDaysAway(minDaysAway)
 
     def getPtoRule(self) -> PtoRule:
         return self.ptoRule

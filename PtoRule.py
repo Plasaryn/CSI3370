@@ -1,5 +1,3 @@
-from PTOMS import PTOMS
-
 class PtoRule:
 
     def __init__(self, minDaysAway: int):
