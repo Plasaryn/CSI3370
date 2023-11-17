@@ -1,5 +1,5 @@
 # add getId()
-from UserAuthenticationSession import UserAuthenticationSession
+
 class UserAuthentication:
     def __init__(self,
                  username: str,
