@@ -11,7 +11,7 @@ class PTOMS:
         self.records: list[PtoRecord] = []
         self.calendar = PtoCalendar()
         self.ptoRule = PtoRule()
-        self.sessions: list(UserAuthenticationSession) = [] # list[UserAuthenitcationSessions]
+        self.sessions: list(UserAuthenticationSession) = []
 
     def getPtoRecord(self, id: int) -> PtoRecord:
         # To Do return a pto record from a given ID
@@ -61,6 +61,18 @@ class PTOMS:
         for sess_id, session in zip(session_ids, self.sessions):
             if  sess_id == id:
                 self.sessions.remove(session)
+
+    def setCompany(self, company: str) -> None:
+        self.company = company
+
+    def getCompany(self) -> str:
+        return self.company
+    
+    def setDepartment(self, department: str) -> None:
+        self.department = department
+
+    def getDepartment(self) -> str:
+        return self.department
 
 
 
