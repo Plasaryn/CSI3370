@@ -8,10 +8,10 @@ class PTOMS:
     def __init__(self, company: str, department: str):
         self.company = company
         self.department = department
-        self.records = [] # list[PtoRecord]
+        self.records: list[PtoRecord] = []
         self.calendar = PtoCalendar()
-        self.ptoRule = PtoRule()
-        self.sessions = [] # list[UserAuthenitcationSessions]
+        self.ptoRule = PtoRule(0)
+        self.sessions: list(UserAuthenticationSession) = []
 
     def getPtoRecord(self, id: int) -> PtoRecord:
         # To Do return a pto record from a given ID
@@ -45,7 +45,7 @@ class PTOMS:
                 self.records.remove(record)
 
     def newPtoRule(self, minDaysAway: int)-> None:
-        self.ptoRule.setMinDatesAway(minDaysAway)
+        self.ptoRule.setMinDaysAway(minDaysAway)
 
     def getPtoRule(self) -> PtoRule:
         return self.ptoRule
@@ -61,6 +61,18 @@ class PTOMS:
         for sess_id, session in zip(session_ids, self.sessions):
             if  sess_id == id:
                 self.sessions.remove(session)
+
+    def setCompany(self, company: str) -> None:
+        self.company = company
+
+    def getCompany(self) -> str:
+        return self.company
+    
+    def setDepartment(self, department: str) -> None:
+        self.department = department
+
+    def getDepartment(self) -> str:
+        return self.department
 
 
 
