@@ -8,10 +8,10 @@ class PTOMS:
     def __init__(self, company: str, department: str):
         self.company = company
         self.department = department
-        self.records = [] # list[PtoRecord]
+        self.records: list[PtoRecord] = []
         self.calendar = PtoCalendar()
         self.ptoRule = PtoRule()
-        self.sessions = [] # list[UserAuthenitcationSessions]
+        self.sessions: list(UserAuthenticationSession) = [] # list[UserAuthenitcationSessions]
 
     def getPtoRecord(self, id: int) -> PtoRecord:
         # To Do return a pto record from a given ID
