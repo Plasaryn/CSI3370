@@ -30,20 +30,27 @@ class PtoRequest:
         #
         # Textual based for now until GUI
         newStatus = input("Choose the status of request:")
+        # Takes the literal of the 'Approved' variable in
+        # the PtoStatus enumeration class and compares it to
+        # the input. It also compares the 'Pending' literal
+        # inside the same class.
+        if newStatus == str(PtoStatus.Approved):
+            app = str(PtoStatus.Approved)
+            self.checkPtoRule(eventStart, eventEnd)
+            self.CalendarEvent.append(CalendarEvent(app, eventStart, eventEnd))
+        elif newStatus == str(PtoStatus.Pending):
+            app = str(PtoStatus.Pending)
+            self.checkPtoRule(eventStart, eventEnd)
+            self.CalendarEvent.append(CalendarEvent(app, eventStart, eventEnd))
 
-        if newStatus == 'Approve':
-            app == 'Approve'
-            self.checkPtoRule(eventStart, eventEnd)
-            self.CalendarEvent.append(CalendarEvent(app, eventStart, eventEnd))
-        elif newStatus == 'Pending':
-            app == 'Pending'
-            self.checkPtoRule(eventStart, eventEnd)
-            self.CalendarEvent.append(CalendarEvent(app, eventStart, eventEnd))
     def deny(self, deny: str) -> None:
         # Textual based for now until GUI
+        # Takes the literal of the 'Denied' variable in
+        # the PtoStatus enumeration class and compares it to
+        # the input.
         newStatus = input("Choose the status of request:")
-        if newStatus == 'Deny':
-            deny == 'Deny'
+        if newStatus == str(PtoStatus.Denied):
+            deny = str(PtoStatus.Denied)
             
     def getStatus(self) -> PtoStatus:
         return self.PtoStatus
