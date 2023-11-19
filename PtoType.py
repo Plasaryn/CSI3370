@@ -4,8 +4,10 @@ class PtoType(Enum):
     Sick = 2
     def __str__(self):
         return self.name
+    
     def pto(self):
-            return self.value[0]
+        return self.value[0]
+    
     def sick(self):
         return self.value[1]
 
