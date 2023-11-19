@@ -52,15 +52,6 @@ class PTOMS:
     
     def getCalendar(self) -> PtoCalendar:
         return self.calendar
-    
-    def addSession(self, session: UserAuthenticationSession) -> None:
-        self.sessions.add(session)
-
-    def removeSession(self, id: int) -> None:
-        session_ids = [x.getId() for x in self.sessions]
-        for sess_id, session in zip(session_ids, self.sessions):
-            if  sess_id == id:
-                self.sessions.remove(session)
 
     def setCompany(self, company: str) -> None:
         self.company = company
@@ -74,6 +65,13 @@ class PTOMS:
     def getDepartment(self) -> str:
         return self.department
 
+    # REMOVING SESSION TRACKING FUNCTIONALITY
+    # def addSession(self, session: UserAuthenticationSession) -> None:
+    #         self.sessions.add(session)
 
-
+    # def removeSession(self, id: int) -> None:
+    #     session_ids = [x.getId() for x in self.sessions]
+    #     for sess_id, session in zip(session_ids, self.sessions):
+    #         if  sess_id == id:
+    #             self.sessions.remove(session)
 
