@@ -10,7 +10,7 @@ from MessageObserver import MessageObserver
 from PtoRSubject import PtoRSubject
 class PtoRequest:
 
-    def __init__(self, eventStart: date, eventEnd: date, message: str, status: str):
+    def __init__(self, eventStart: date, eventEnd: date, status: str):
         self.PtoStatus = PtoStatus()
         self.PtoType = PtoType()
         self.PtoRecord = PtoRecord()
@@ -22,39 +22,56 @@ class PtoRequest:
         self.PtoRSubject = PtoRSubject()
         self.eventStart = eventStart
         self.eventEnd = eventEnd
-        self.message = message
         self.status = status
 
     def approve(self, eventStart: date, eventEnd: date) -> None:
         # Sets the decision of the PTO request
         #
-        self.checkPtoRule(eventStart, eventEnd)
+        self.eventStart = input()
+        self.eventEnd = PtoRequest.checkPtoRule()
         parent = self.PtoRecord
+
         newStatus = PtoStatus.Approved
+        #newStatus = PtoRequest.setStatus()
         CalendarEvent(
-            id = parent.getId(),
+            empId = parent.getId(),
             start = eventStart,
             end = eventEnd,
             eventName = str(PtoStatus.Approved)
         )
         PtoRequest.setStatus(str(newStatus))
+        message = input()
+        PtoRequest.setMessage(message)
 
     def deny(self) -> None:
         # Takes the literal of the 'Denied' variable in
         # the PtoStatus enumeration class.
-        newStart = date
-        newEnd = date
-        self.eventStart = newStart.replace(year = 0, month = 0, day = 0)
-        self.eventEnd = newEnd.replace(year = 0, month = 0, day = 0)
+        self.eventEnd = PtoRequest.checkPtoRule()
+        newStart = date.today()
+        newEnd = date.today()
+        self.eventStart = newStart.replace(newStart.year, newStart.month, newStart.day)
+        self.eventEnd = newEnd.replace(newEnd.year, newEnd.month, newEnd.day)
         newStatus = PtoStatus.Denied
         PtoRequest.setStatus(str(newStatus))
-        
+        message = input()
+        PtoRequest.setMessage(message)
             
     def getStatus(self) -> PtoStatus:
         return self.PtoStatus
     
     def setStatus(self, newStatus: str):
+        newStatus = input()
+        if(newStatus == "Approved"):
+            newStatus = str(PtoStatus.Approved)
+            return newStatus
+        elif(newStatus == "Denied"):
+            newStatus = str(PtoStatus.Denied)
+            return newStatus
+        elif(newStatus == "Pending"):
+            newStatus = str(PtoStatus.Pending)
+            return newStatus
         self.status = newStatus
+
     def getType(self) -> PtoType:
         return self.PtoType
     
@@ -81,17 +98,18 @@ class PtoRequest:
 
 
 
-    def checkPtoRule(self, ptoms: PTOMS) -> None:
+    def checkPtoRule(self, newDay: date) -> None:
         # Convert the PTORule to check how many days
         # from the current day when employee can take
         # time off.
-        time_rule = ptoms.getPtoRule()
+        time_rule = PTOMS.getPtoRule()
         day_convert = -time_rule
         current_day = date.today()
         next_day = timedelta(days = day_convert)
 
         total_time = current_day - next_day
-        day_format = total_time.strftime("%d")
+        newDay = total_time
+        return total_time
 
         
 
