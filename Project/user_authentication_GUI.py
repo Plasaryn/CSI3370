@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from UserAuthentication import *
+
 class UserAuthenticationApp:
     def __init__(self, root):
         self.root = root
@@ -30,11 +32,15 @@ class UserAuthenticationApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        
-        if username == "user" and password == "password":
-            messagebox.showinfo("Authentication", "Login Successful!")
+        # instance of UserAuthentication class
+        user = UserAuthentication(username, password)
+        # if the validation passes:
+        if user.validateAuthentication(username, password) is True:
+            messagebox.showinfo("Authentication", "Login success")
+        # if validation fails
         else:
-            messagebox.showerror("Authentication Error", "Invalid username or password")
+            messagebox.showerror("Authentication Error", "login failed")
+    
 
 if __name__ == "__main__":
     root = tk.Tk()
