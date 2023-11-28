@@ -10,7 +10,8 @@ from MessageObserver import MessageObserver
 from PtoRSubject import PtoRSubject
 class PtoRequest:
 
-    def __init__(self, eventStart: date, eventEnd: date, message: str, status: str):
+    def __init__(self, id: int, eventStart: date, eventEnd: date, message: str, status: str):
+        self.id = id
         self.PtoStatus = PtoStatus()
         self.PtoType = PtoType()
         self.PtoRecord = PtoRecord()
@@ -24,6 +25,9 @@ class PtoRequest:
         self.eventEnd = eventEnd
         self.message = message
         self.status = status
+
+    def getId(self) -> int:
+        return self.id
 
     def approve(self, eventStart: date, eventEnd: date) -> None:
         # Sets the decision of the PTO request
