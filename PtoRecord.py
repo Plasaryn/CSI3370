@@ -1,4 +1,5 @@
 from Employee import Employee
+from PtoRequest import PtoRequest
 
 class PtoRecord:
     def __init__(self, 
@@ -16,6 +17,7 @@ class PtoRecord:
         self.ptoDaysRemaining = ptoDaysPermitted
         self.sickDaysRemaining = sickDaysPermitted
         self.employee = employee
+        self.requestList: list[ProRequest] = []
 
     def __str__(self) -> str:
         return f"id: {self.id}"
@@ -61,6 +63,18 @@ class PtoRecord:
 
     def setSickDaysRemaining(self, daysRemaining: int) -> None:
         self.sickDaysRemaining = daysRemaining
+
+    def addPtoRequest(self, request: PtoRequest) -> None:
+        self.requestList.append(request)
+
+    def getPtoRequests(self) -> list[PtoRequest]:
+        return self.requestList
+    
+    def getPtoRequest(self, id: int) -> None:
+        id_ls = [x.getId() for x in self.requestList]
+        for req_id,request in zip(id_ls, self.requestList):
+            if req_id == id:
+                return request
 
     def getEmployee(self) -> None:
         return self.employee
