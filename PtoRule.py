@@ -6,9 +6,5 @@ class PtoRule:
     def getMinDaysAway(self) -> int:
         return self.minDaysAway
     
-    def setMinDaysAway(self, minDaysAway):
-        # Textual for now; Can implement into GUI, input
-        # minDates
-        minDaysAway = input()
-        
+    def setMinDaysAway(self, minDaysAway):    
         self.minDaysAway = minDaysAway

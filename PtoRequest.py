@@ -10,7 +10,7 @@ from MessageObserver import MessageObserver
 from PtoRSubject import PtoRSubject
 class PtoRequest:
 
-    def __init__(self, eventStart: date, eventEnd: date, message: str):
+    def __init__(self, eventStart: date, eventEnd: date, message: str, status: str):
         self.PtoStatus = PtoStatus()
         self.PtoType = PtoType()
         self.PtoRecord = PtoRecord()
@@ -23,41 +23,38 @@ class PtoRequest:
         self.eventStart = eventStart
         self.eventEnd = eventEnd
         self.message = message
-        
+        self.status = status
 
-    def approve(self, app: str, eventStart: date, eventEnd: date) -> None:
+    def approve(self, eventStart: date, eventEnd: date) -> None:
         # Sets the decision of the PTO request
         #
-        # Textual based for now until GUI
-        newStatus = input("Choose the status of request:")
-        # Takes the literal of the 'Approved' variable in
-        # the PtoStatus enumeration class and compares it to
-        # the input. It also compares the 'Pending' literal
-        # inside the same class.
-        if newStatus == str(PtoStatus.Approved):
-            app = str(PtoStatus.Approved)
-            self.checkPtoRule(eventStart, eventEnd)
-            self.CalendarEvent.append(CalendarEvent(app, eventStart, eventEnd))
-        elif newStatus == str(PtoStatus.Pending):
-            app = str(PtoStatus.Pending)
-            self.checkPtoRule(eventStart, eventEnd)
-            self.CalendarEvent.append(CalendarEvent(app, eventStart, eventEnd))
+        self.checkPtoRule(eventStart, eventEnd)
+        parent = self.PtoRecord
+        newStatus = PtoStatus.Approved
+        CalendarEvent(
+            id = parent.getId(),
+            start = eventStart,
+            end = eventEnd,
+            eventName = str(PtoStatus.Approved)
+        )
+        PtoRequest.setStatus(str(newStatus))
 
-    def deny(self, deny: str) -> None:
-        # Textual based for now until GUI
+    def deny(self) -> None:
         # Takes the literal of the 'Denied' variable in
-        # the PtoStatus enumeration class and compares it to
-        # the input.
-        newStatus = input("Choose the status of request:")
-        if newStatus == str(PtoStatus.Denied):
-            deny = str(PtoStatus.Denied)
+        # the PtoStatus enumeration class.
+        newStart = date
+        newEnd = date
+        self.eventStart = newStart.replace(year = 0, month = 0, day = 0)
+        self.eventEnd = newEnd.replace(year = 0, month = 0, day = 0)
+        newStatus = PtoStatus.Denied
+        PtoRequest.setStatus(str(newStatus))
+        
             
     def getStatus(self) -> PtoStatus:
         return self.PtoStatus
     
-    def setStatus(self, appStatus):
-
-        self.status = appStatus
+    def setStatus(self, newStatus: str):
+        self.status = newStatus
     def getType(self) -> PtoType:
         return self.PtoType
     
@@ -70,8 +67,8 @@ class PtoRequest:
     def getMessage(self):
         return self.message
     
-    def setMessage(self, message):
-        self.message = message
+    def setMessage(self, newMessage: str):
+        self.message = newMessage
     
     def PtoObservers(self, eEnd: EEndObserver, eStart: EStartObserver, MessObs: MessageObserver):
         sub = PtoRSubject()
@@ -87,16 +84,15 @@ class PtoRequest:
     def checkPtoRule(self, ptoms: PTOMS) -> None:
         # Convert the PTORule to check how many days
         # from the current day when employee can take
-        # time off
-        time_rule = ptoms.getPtoRule
+        # time off.
+        time_rule = ptoms.getPtoRule()
         day_convert = -time_rule
         current_day = date.today()
         next_day = timedelta(days = day_convert)
 
         total_time = current_day - next_day
         day_format = total_time.strftime("%d")
-        #display the current pto rule, textual for now
-        print("Cannot take time off until the " + day_format)
+
         
 
 
