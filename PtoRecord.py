@@ -17,6 +17,7 @@ class PtoRecord:
         self.ptoDaysRemaining = ptoDaysPermitted
         self.sickDaysRemaining = sickDaysPermitted
         self.employee = employee
+        self.requestList: list[PtoRequest]
 
     def __str__(self) -> str:
         return f"id: {self.id}"
