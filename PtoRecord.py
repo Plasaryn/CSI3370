@@ -64,8 +64,6 @@ class PtoRecord:
     def setSickDaysRemaining(self, daysRemaining: int) -> None:
         self.sickDaysRemaining = daysRemaining
 
-<<<<<<< Updated upstream
-=======
     def addPtoRequest(self, request: PtoRequest) -> None:
         self.requestList.append(request)
 
@@ -83,7 +81,6 @@ class PtoRecord:
         for req_id,request in zip(id_ls, self.requestList):
             if req_id == id:
                 self.requestList.remove(request)
-
->>>>>>> Stashed changes
+                
     def getEmployee(self) -> None:
         return self.employee
