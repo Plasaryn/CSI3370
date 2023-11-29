@@ -1,5 +1,5 @@
 from Employee import Employee
-from PtoRequest import ProRequest
+from PtoRequest import PtoRequest
 
 class PtoRecord:
     def __init__(self, 
