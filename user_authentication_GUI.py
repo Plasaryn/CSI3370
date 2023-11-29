@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import os
 
 from UserAuthentication import *
 
@@ -36,8 +37,15 @@ class UserAuthenticationApp:
         user = UserAuthentication(username, password)
         # if the validation passes:
         if user.validateAuthentication(username, password) is True:
-            # messagebox.showinfo("Authentication", "Login success")
-            exit()
+            test = os.getcwd()
+            next = os.path.join(test, "ptoms_GUI.py")
+
+            # close the authentication window upon successful auth
+            root.destroy()
+
+            # opens the ptoms_GUI.py script
+            # os.system(f"python {next}")
+            
         # if validation fails
         else:
             messagebox.showerror("Authentication Error", "login failed")
