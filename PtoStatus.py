@@ -16,10 +16,3 @@ class PtoStatus(Enum):
         return self.value[2]
 
     #Enum class of options for PtoStatus
-
-    
-        
-
-
-    
-

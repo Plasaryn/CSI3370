@@ -2,7 +2,7 @@ from Employee import Employee
 from PtoRecord import PtoRecord
 from PtoCalendar import PtoCalendar
 from PtoRule import PtoRule
-from UserAuthenticationSession import UserAuthenticationSession
+from UserAuthentication import UserAuthentication
 
 class PTOMS:
     def __init__(self, company: str, department: str):
@@ -11,7 +11,7 @@ class PTOMS:
         self.records: list[PtoRecord] = []
         self.calendar = PtoCalendar()
         self.ptoRule = PtoRule(0)
-        self.sessions: list(UserAuthenticationSession) = []
+        self.sessions: list(UserAuthentication) = []
 
     def getPtoRecord(self, id: int) -> PtoRecord:
         # To Do return a pto record from a given ID
@@ -74,4 +74,3 @@ class PTOMS:
     #     for sess_id, session in zip(session_ids, self.sessions):
     #         if  sess_id == id:
     #             self.sessions.remove(session)
-
