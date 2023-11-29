@@ -1,7 +1,6 @@
 # from PTOMS import PTOMS
 # from Employee import Employee
 # from ptoms_GUI import ptoms_GUI
-
 import os
 from datetime import date
 
@@ -75,6 +74,41 @@ if __name__ == "__main__":
 
   # Please include placeholder data for Wednesday's demo
 
+  #Requesting data (tuplets) : View PTO GUI (ptoms_GUI)
+  request1 = ('2023-10-27', '2023-11-02') # start date (type: date), end date (type: date)
+  
+  val1 = str(request1[0])
+  val2 = str(request1[1])
+
+  request2 = ('2023-10-12', '2023-10-20')
+
+  val3 = str(request2[0])
+  val4 = str(request2[1])
+
+  request3 = ('2023-10-30', '2023-11-05')
+
+  val5 = str(request3[0])
+  val6 = str(request3[1])
+
+  #Calendar day data values : Calendar GUI (ptoms_GUI)
+  select_day = 27
+  select_day = 12
+  select_day = 30
+
+  #Pto_Record : total_val1 - used_val1 = Pto Available. 
+  # Values (total and used) already initialized in GUI, day needs to be set.
+
+  total_val1 = 10
+  total_val2 = 12
+  total_val3 = 14
+
+  used_val1 = 5
+  used_val2 = 3
+  used_val3 = 1
+
+  # pto_request_GUI : ???
+
+  # 
   # In summary, navigability and interaction between front-end and back-end need to be improved before final submission
 
 
