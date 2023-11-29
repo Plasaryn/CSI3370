@@ -85,6 +85,16 @@ class PTOApp:
        
         if username == "craig" and password == "testing":
             self.show_page("Main")
+        if username == "mike" and password == "password":
+            self.show_page("Main")
+        if username == "scott" and password == "test123":
+            self.show_page("Main")
+        if username == "tyler" and password == "password123":
+            self.show_page("Main")
+        if username == "anderson" and password == "password321":
+            self.show_page("Main")
+        if username == "jared" and password == "hello123":
+            self.show_page("Main")
         else:
             messagebox.showerror("Login error", "Incorrect username or password")
 
