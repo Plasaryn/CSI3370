@@ -1,4 +1,5 @@
 from Employee import Employee
+from PtoRequest import ProRequest
 
 class PtoRecord:
     def __init__(self, 
