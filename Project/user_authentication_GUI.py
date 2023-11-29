@@ -36,7 +36,8 @@ class UserAuthenticationApp:
         user = UserAuthentication(username, password)
         # if the validation passes:
         if user.validateAuthentication(username, password) is True:
-            messagebox.showinfo("Authentication", "Login success")
+            # messagebox.showinfo("Authentication", "Login success")
+            exit()
         # if validation fails
         else:
             messagebox.showerror("Authentication Error", "login failed")
@@ -47,8 +48,8 @@ if __name__ == "__main__":
     app = UserAuthenticationApp(root)
 
     
-    window_width = 300
-    window_height = 200
+    window_width = 400
+    window_height = 300
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     x_position = int((screen_width - window_width) / 2)
