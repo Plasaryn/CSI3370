@@ -4,10 +4,6 @@ from PtoRecord import PtoRecord
 from PtoStatus import PtoStatus
 from PtoType import PtoType
 from CalendarEvent import CalendarEvent
-from EEndObserver import EEndObserver
-from EStartObserver import EStartObserver
-from MessageObserver import MessageObserver
-from PtoRSubject import PtoRSubject
 class PtoRequest:
 
     def __init__(self, id: int, eventStart: date, eventEnd: date, status: str, types: str):
@@ -17,9 +13,6 @@ class PtoRequest:
         self.PtoRecord = PtoRecord()
         self.PTOMS = PTOMS()
         self.CalendarEvent = CalendarEvent()
-        self.EEndObserver = EEndObserver()
-        self.EStartObserver = EStartObserver()
-        self.MessageObserver = MessageObserver()
         self.PtoRSubject = PtoRSubject()
         self.eventStart = eventStart
         self.eventEnd = eventEnd
@@ -104,16 +97,6 @@ class PtoRequest:
     
     def setMessage(self, newMessage: str):
         self.message = newMessage
-
-    def PtoObservers(self, eEnd: EEndObserver, eStart: EStartObserver, MessObs: MessageObserver):
-        sub = PtoRSubject()
-        self.eEnd = eEnd
-        self.eStart = eStart
-        self.MessObs = MessObs
-        sub.addObserver(eEnd)
-        sub.addObserver(eStart)
-        sub.addObserver(MessObs)
-
 
 
     def checkPtoRule(self, newDay: date) -> None:
