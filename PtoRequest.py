@@ -13,7 +13,6 @@ class PtoRequest:
         self.PtoRecord = PtoRecord()
         self.PTOMS = PTOMS()
         self.CalendarEvent = CalendarEvent()
-        self.PtoRSubject = PtoRSubject()
         self.eventStart = eventStart
         self.eventEnd = eventEnd
         self.status = status
