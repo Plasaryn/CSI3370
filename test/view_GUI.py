@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
+# REDUNDANT CLASS
+# DO NOT USE 
+# MOVE THINGS INTO OTHER CLASSES IF NEEDED
 
 class PTOApp:
     def __init__(self, root):
@@ -82,21 +85,29 @@ class PTOApp:
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
-       
-        if username == "craig" and password == "testing":
-            self.show_page("Main")
-        elif username == "mike" and password == "password":
-            self.show_page("Main")
-        elif username == "scott" and password == "test123":
-            self.show_page("Main")
-        elif username == "tyler" and password == "password123":
-            self.show_page("Main")
-        elif username == "anderson" and password == "password321":
-            self.show_page("Main")
-        elif username == "jared" and password == "hello123":
+
+        guy = UserAuthentication(username, password)
+        
+        if guy.tryAuthentication():
             self.show_page("Main")
         else:
-            messagebox.showerror("Login error", "Incorrect username or password")
+            messagebox.showerror("Login error", "Incorrect username or password!")
+
+        # if username == "craig" and password == "testing":
+        #     self.show_page("Main")
+        # elif username == "mike" and password == "password":
+        #     self.show_page("Main")
+        # elif username == "scott" and password == "test123":
+        #     self.show_page("Main")
+        # elif username == "tyler" and password == "password123":
+        #     self.show_page("Main")
+        # elif username == "anderson" and password == "password321":
+        #     self.show_page("Main")
+        # elif username == "jared" and password == "hello123":
+        #     self.show_page("Main")
+        # else:
+        #     messagebox.showerror("Login error", "Incorrect username or password")
+        
 
     def submit_pto_request(self):
         start_date = self.start_date_entry.get()

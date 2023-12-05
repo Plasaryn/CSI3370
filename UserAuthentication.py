@@ -66,16 +66,16 @@ class UserAuthentication:
         # check for username and password within stdUser nested dict
         for user, credentials in stdUsers.items():
             if credentials['name'] == username and credentials['password'] == password:
-                AuthenticationLevel.user
+                self.authenticationLevel == 1
                 print("User credentials passed!")
-                return True
+                return True, 1
         
         # check for username and password within admins nested dict
         for user, credentials in admins.items():
             if credentials['name'] == username and credentials['password'] == password:
-                AuthenticationLevel.admin
+                self.authenticationLevel == 2
                 print("Admin credentials passed!")
-                return True
+                return True, 2
 
         # failed to log in, no user type    
         print("Authentication failed!")
@@ -84,7 +84,17 @@ class UserAuthentication:
     def getId():
         # is this necessary??
         return 9987
+    
 
+    # afaik unused
+    def getAuthenticationLevel(self):
+        return self.authenticationLevel
+
+    def getAuthenticationLevelUser():
+        return AuthenticationLevel.user
+
+    def getAuthenticationLevelAdmin():
+        return AuthenticationLevel.admin
 
 # UNCOMMENT TO TEST CODE
 # create instance of UserAuthentication class, use empty username and password 

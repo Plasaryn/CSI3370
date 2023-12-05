@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from UserAuthentication import *
 
 class PTOApp:
     def __init__(self, root):
@@ -80,23 +81,28 @@ class PTOApp:
         page.tkraise()
 
     def login(self):
+        # grabs the username and password from the form
         username = self.username_entry.get()
         password = self.password_entry.get()
+
+        # creates object of UserAuthentication class
+        guy = UserAuthentication(username, password)
+        # bool for authentication success, and auth level (enum)
+        userAuthenticated, auth_level = guy.validateAuthentication(username, password)
        
-        if username == "craig" and password == "testing":
-            self.show_page("Main")
-        if username == "mike" and password == "password":
-            self.show_page("Main")
-        if username == "scott" and password == "test123":
-            self.show_page("Main")
-        if username == "tyler" and password == "password123":
-            self.show_page("Main")
-        if username == "anderson" and password == "password321":
-            self.show_page("Main")
-        if username == "jared" and password == "hello123":
-            self.show_page("Main")
+        if userAuthenticated:
+            # standard user
+            if auth_level == 1:
+                self.show_page("Main")
+                print("Standard User authentication success!")
+            # admin user
+            elif auth_level == 2:
+                # CHANGE TO ADMIN GUI HERE
+                self.show_page("Main")
+                print("Admin user authenticated")
         else:
-            messagebox.showerror("Login error", "Incorrect username or password")
+            messagebox.showerror("Login error", "Incorrect username or password!")
+
 
     def submit_pto_request(self):
         start_date = self.start_date_entry.get()
