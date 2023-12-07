@@ -1,12 +1,13 @@
-from Employee import Employee
 from PtoRequest import PtoRequest
+from PtoStatus import PtoStatus
+
 
 class PtoRecord:
     def __init__(self, 
             id: int,
             ptoDaysPermitted: int,
             sickDaysPermitted: int,
-            employee: Employee
+            empName: str
             ):
         
         self.id = id
@@ -16,15 +17,25 @@ class PtoRecord:
         self.sickDaysConsumed = 0
         self.ptoDaysRemaining = ptoDaysPermitted
         self.sickDaysRemaining = sickDaysPermitted
-        self.employee = employee
-        self.requestList: list[ProRequest] = []
+        self.empName = empName
+        self.requestList: list[PtoRequest] = []
 
     def __str__(self) -> str:
         return f"id: {self.id}"
 
     def getId(self) -> int:
         return self.id
-    
+
+    def getPTORecordInfoString(self):
+        return "PTO Days Permitted: "+ str(self.ptoDaysPermitted) +"\nPTO Days Remaining: " + str(self.ptoDaysRemaining) + "\nPTO Days Consumed: "+ str(self.ptoDaysConsumed)
+
+    def getAllPTORequestsInfo(self):
+        requestListString = ""
+
+        for request in self.requestList:
+            requestListString = requestListString + request.getPTORequestString() + "\n-------------------------------------------------------\n"
+
+        return requestListString
     def getSickDaysRemaining(self) -> int:
         return self.sickDaysRemaining
     
@@ -43,8 +54,8 @@ class PtoRecord:
     def getPtoDaysPermitted(self) -> int:
         return self.ptoDaysPermitted
     
-    def getEmployeeName(self) -> str:
-        return self.employee.getName()
+    def getEmpName(self) -> str:
+        return self.empName
     
     def setPtoDaysPermitted(self, daysPermitted: int) -> None:
         self.ptoDaysPermitted = daysPermitted
@@ -64,17 +75,37 @@ class PtoRecord:
     def setSickDaysRemaining(self, daysRemaining: int) -> None:
         self.sickDaysRemaining = daysRemaining
 
-    def addPtoRequest(self, request: PtoRequest) -> None:
-        self.requestList.append(request)
+
 
     def getPtoRequests(self) -> list[PtoRequest]:
         return self.requestList
     
-    def getPtoRequest(self, id: int) -> None:
-        id_ls = [x.getId() for x in self.requestList]
-        for req_id,request in zip(id_ls, self.requestList):
-            if req_id == id:
+    def getPtoRequest(self, id: int) -> PtoRequest:
+
+        for request in self.requestList:
+            if request.requestID == id:
                 return request
 
-    def getEmployee(self) -> None:
-        return self.employee
+    def getPendingRequests(self):
+        pendingList: list[PtoRequest] = []
+
+        print("PendingRequests called")
+        for request in self.requestList:
+            if request.status == "Pending":
+                print("adding request with id" +str(request.requestID))
+                pendingList.append(request)
+
+        return pendingList
+
+    def addPtoRequest(self, request: PtoRequest) -> None:
+        self.requestList.append(request)
+    def removePtoRequest(self, id: int):
+        for request in self.requestList:
+            if request.requestID == id:
+                self.requestList.remove(request)
+                print("Request with id: "+ str(id)+ "removed")
+
+    def recalculateBalance(self, numDays: int):
+        self.ptoDaysConsumed += numDays
+        self.ptoDaysRemaining -= numDays
+

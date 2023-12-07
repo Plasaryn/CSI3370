@@ -13,4 +13,3 @@ class PtoType(Enum):
 
     #Enum class of options for PtoRequest
 
-
