@@ -11,7 +11,7 @@ class CalendarEvent:
         self.eventName = eventName
 
     def getCalEventToString(self):
-        return f"{self.eventName}: {self.eventStart.strftime("%x")} to {self.eventEnd.strftime("%x")}"
+        return f"{self.eventName}: {self.eventStart.strftime('%x')} to {self.eventEnd.strftime('%x')}"
 
     def getStartDate(self):
         return self.eventStart
