@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+from random import random
+
 from PtoStatus import PtoStatus
 from CalendarEvent import CalendarEvent
 class PtoRequest:
@@ -19,10 +21,8 @@ class PtoRequest:
 
     def getStatus(self) -> PtoStatus:
         return self.status
-
     def getPTORequestString(self):
         return "ID: "+ str(self.requestID) +"\nEmployee Name: " +str(self.requestEmpName)+ "\nStart Date: "+ str(self.startDate.strftime("%x"))+"\nEnd Date: " + str(self.endDate.strftime("%x")) + "\n   Status: "+ str(self.status) + "\n   Message: " +str(self.message)
-
 
     def getNumDays(self):
         return int(self.numDays)
@@ -42,13 +42,6 @@ class PtoRequest:
     def approve(self, message: str) -> None:
         self.status = PtoStatus.Approved.name
         self.setMessage(message)
-        # CalendarEvent(
-        #     empId = parent.getId(),
-        #     start = eventStart,
-        #     end = eventEnd,
-        #     eventName = self.status
-        # )
-
 
     def deny(self, message: str) -> None:
         # Setting the status
