@@ -26,8 +26,6 @@ class PtoRecord:
     def getId(self) -> int:
         return self.id
 
-    def addPtoRequest(self, request: PtoRequest) -> None:
-        self.requestList.append(request)
     def getPTORecordInfoString(self):
         return "PTO Days Permitted: "+ str(self.ptoDaysPermitted) +"\nPTO Days Remaining: " + str(self.ptoDaysRemaining) + "\nPTO Days Consumed: "+ str(self.ptoDaysConsumed)
 
@@ -35,7 +33,7 @@ class PtoRecord:
         requestListString = ""
 
         for request in self.requestList:
-            requestListString = requestListString + request.getPTORequestString() + "\n-------------------------------\n"
+            requestListString = requestListString + request.getPTORequestString() + "\n-------------------------------------------------------\n"
 
         return requestListString
     def getSickDaysRemaining(self) -> int:
@@ -88,7 +86,6 @@ class PtoRecord:
             if request.requestID == id:
                 return request
 
-
     def getPendingRequests(self):
         pendingList: list[PtoRequest] = []
 
@@ -100,12 +97,13 @@ class PtoRecord:
 
         return pendingList
 
+    def addPtoRequest(self, request: PtoRequest) -> None:
+        self.requestList.append(request)
     def removePtoRequest(self, id: int):
         for request in self.requestList:
             if request.requestID == id:
                 self.requestList.remove(request)
                 print("Request with id: "+ str(id)+ "removed")
-                
 
     def recalculateBalance(self, numDays: int):
         self.ptoDaysConsumed += numDays
