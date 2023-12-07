@@ -1,5 +1,4 @@
 from User import User
-
 class UserAuthenticationSystem:
     
     def __init__(self):
